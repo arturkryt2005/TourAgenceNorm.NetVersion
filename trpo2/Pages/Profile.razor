@@ -6,17 +6,16 @@
 @using trpo2.Data;
 @inject UserService userService;
 
-
-<h3>Profile</h3>
+<Header />
 
 <div class="profile-container">
     @if (CurrentUser != null)
     {
         <div class="profile-info">
-            <p><strong>Имя:</strong> @CurrentUser.FirstName</p>
-            <p><strong>Фамилия:</strong> @CurrentUser.LastName</p>
-            <p><strong>Почта:</strong> @CurrentUser.Email</p>
-            <p><strong>Номер телефона:</strong> @CurrentUser.Phone</p>
+            <p class="info-item"><strong>Имя:</strong> @CurrentUser.FirstName</p>
+            <p class="info-item"><strong>Фамилия:</strong> @CurrentUser.LastName</p>
+            <p class="info-item"><strong>Почта:</strong> @CurrentUser.Email</p>
+            <p class="info-item"><strong>Номер телефона:</strong> @CurrentUser.Phone</p>
         </div>
     }
     else

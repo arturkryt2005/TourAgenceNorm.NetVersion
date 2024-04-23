@@ -2,6 +2,9 @@
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 h1:focus {
@@ -49,6 +52,65 @@ body {
     border-radius: 4px;
 }
 
+.profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+    margin-bottom: 20px;
+}
+
+    .profile-info .info-item {
+        margin: 10px 0;
+    }
+
+    .profile-info strong {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .profile-info .info-item {
+        color: #666;
+    }
+
+.profile-container p {
+    color: #666;
+}
+
+    .profile-container p:last-child {
+        margin-bottom: 0;
+    }
+
+    .profile-container p:nth-child(odd) {
+        background-color: #f0f0f0;
+        padding: 8px;
+        border-radius: 5px;
+    }
+
+.profile-info .info-item:nth-child(odd) {
+    background-color: #f0f0f0;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.profile-container p:nth-child(even) {
+    background-color: #e0e0e0;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.profile-info .info-item:nth-child(even) {
+    background-color: #e0e0e0;
+    padding: 8px;
+    border-radius: 5px;
+}
+
 .btn-link {
     display: block;
     margin-top: 10px;
@@ -88,6 +150,8 @@ body {
 .HeaderMain {
     background-color: #FFEAEA;
     height: 55px;
+    margin: 0; 
+    width: 100%
 }
 
 .HeaderText {
@@ -131,9 +195,7 @@ a, .btn-link {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-.content {
-    padding-top: 1.1rem;
-}
+
 
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
