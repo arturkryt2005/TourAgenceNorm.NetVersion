@@ -1,0 +1,35 @@
+﻿@page "/Profile"
+@using trpo2.Models
+@inject TourAgencyContext dbContext
+@inject Microsoft.JSInterop.IJSRuntime JSRuntime
+@using Microsoft.EntityFrameworkCore;
+@using trpo2.Data;
+@inject UserService userService;
+
+
+<h3>Profile</h3>
+
+<div class="profile-container">
+    @if (CurrentUser != null)
+    {
+        <div class="profile-info">
+            <p><strong>Имя:</strong> @CurrentUser.FirstName</p>
+            <p><strong>Фамилия:</strong> @CurrentUser.LastName</p>
+            <p><strong>Почта:</strong> @CurrentUser.Email</p>
+            <p><strong>Номер телефона:</strong> @CurrentUser.Phone</p>
+        </div>
+    }
+    else
+    {
+        <p>Данные пользователя не загружены.</p>
+    }
+</div>
+
+@code {
+    private Customer CurrentUser;
+
+    protected override void OnInitialized()
+    {
+        CurrentUser = userService.GetCurrentUser();
+    }
+}

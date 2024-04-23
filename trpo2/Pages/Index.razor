@@ -1,4 +1,11 @@
 ﻿@page "/"
+@inject Microsoft.JSInterop.IJSRuntime JSRuntime
+@using trpo2.Models
+@inject TourAgencyContext dbContext
+@using Microsoft.EntityFrameworkCore;
+@using trpo2.Data;
+@inject UserService userService;
+
 
 <PageTitle>Index</PageTitle>
 
@@ -6,31 +13,20 @@
         <h1 class="Vhonh">Вход</h1>
 
         <div class="form-group">
-            <label for="firstName">Имя:</label>
-            <input type="text" id="firstName" class="form-control" />
-        </div>
+            <label for="firstName">Почта:</label>
+        <input type="text" id="email" class="form-control" @bind="email" />
+    </div>
 
         <div class="form-group">
-            <label for="lastName">Фамилия:</label>
-            <input type="text" id="lastName" class="form-control" />
-        </div>
-
-        <div class="form-group">
-            <label for="email">Почта:</label>
-            <input type="email" id="email" class="form-control" />
-        </div>
-
-        <div class="form-group">
-            <label for="phoneNumber">Номер телефона:</label>
-            <input type="tel" id="phoneNumber" class="form-control" />
-        </div>
+            <label for="lastName">Пароль:</label>
+        <input type="password" id="password" class="form-control" @bind="password" />
+    </div>
 
         <div class="buttons">
-            <button type="submit" class="btn btn-primary">Войти</button>
-            <button @onclick="RedirectToRegistrationPage" class=" btn btn-link">Нет аккаунта?</button>
+        <button type="submit" class="btn btn-primary" @onclick="Register">Войти</button>
+        <button @onclick="RedirectToRegistrationPage" class=" btn btn-link">Нет аккаунта?</button>
         </div>
 </div>
-
 @code {
     [Inject]
     private NavigationManager NavigationManager { get; set; }
@@ -38,5 +34,30 @@
     private void RedirectToRegistrationPage()
     {
         NavigationManager.NavigateTo("/RegistrationPage");
+    }
+
+    private string email;
+    private string password;
+
+    private async Task Register()
+    {
+        if (string.IsNullOrEmpty(email) ||
+            string.IsNullOrEmpty(password))
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "Пожалуйста, заполните все обязательные поля.");
+            return;
+        }
+        else{
+        var user = await dbContext.Customers.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
+        if (user != null)
+        {
+            userService.SetCurrentUser(user);
+            NavigationManager.NavigateTo("/Profile");
+        }
+        else
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "Неверный адрес электронной почты или пароль.");
+        }
+    }
     }
 }

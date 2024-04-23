@@ -1,5 +1,72 @@
 ﻿@page "/RegistrationPage"
+@using trpo2.Models
+@inject TourAgencyContext dbContext
+@inject Microsoft.JSInterop.IJSRuntime JSRuntime
+
+<div class="login-form">
+    <h1 class="Vhonh">Регистрация</h1>
+
+    <div class="form-group">
+        <label for="firstName">Имя:</label>
+        <input type="text" id="firstName" class="form-control" @bind="firstName" required />
+    </div>
+
+    <div class="form-group">
+        <label for="lastName">Фамилия:</label>
+        <input type="text" id="lastName" class="form-control" @bind="lastName" required />
+    </div>
+
+    <div class="form-group">
+        <label for="email">Почта:</label>
+        <input type="email" id="email" class="form-control" @bind="email" required />
+    </div>
+
+    <div class="form-group">
+        <label for="phoneNumber">Номер телефона:</label>
+        <input type="tel" id="phoneNumber" class="form-control" @bind="phoneNumber" required />
+    </div>
+
+    <div class="form-group">
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" class="form-control" @bind="password" required />
+    </div>
+
+    <button class="btn btn-reg" @onclick="Register">Зарегистироваться</button>
+</div>
 
 @code {
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
 
+    private string firstName;
+    private string lastName;
+    private string email;
+    private string phoneNumber;
+    private string password;
+
+    private async Task Register()
+    {
+        if (string.IsNullOrEmpty(firstName) ||
+            string.IsNullOrEmpty(lastName) ||
+            string.IsNullOrEmpty(email) ||
+            string.IsNullOrEmpty(phoneNumber) ||
+            string.IsNullOrEmpty(password))
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "Пожалуйста, заполните все обязательные поля.");
+            return;
+        }
+        var customer = new Customer()
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email,
+                Phone = phoneNumber,
+                Password = password
+            };
+
+        dbContext.Customers.Add(customer);
+        await dbContext.SaveChangesAsync();
+
+        NavigationManager.NavigateTo("/Index");
+    }
 }
