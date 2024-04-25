@@ -148,21 +148,27 @@ body {
 }
 
 .HeaderMain {
-    background-color: #FFEAEA;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxkhe_HvL3UWbcZiCxKJn8asdma0AkJ2JChxZHFtKDZg&s');
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 55px;
-    margin: 0; 
+    margin: 0;
     width: 100%
 }
 
 .HeaderText {
     display: flex;
+    text-decoration: none;
     align-items: center;
+    font-family: Montserrat;
     justify-content: space-between;
 }
 
 .iconFP {
     height: 55px;
     width: 55px;
+    margin-left: 2px;
+    margin-top: 2px;
 }
 
 .TextHeadera {
@@ -170,6 +176,7 @@ body {
     font-size: 18px;
     font-weight: bold;
     color: #333;
+    text-decoration: none;
 }
 
 .TextHeadera {
