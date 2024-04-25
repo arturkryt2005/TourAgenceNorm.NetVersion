@@ -21,20 +21,20 @@
     </div>
 
     <div class="Tailand">
-        <img class="imagge" src="" />
         <h1 class="ZagolovokStran">
             Таиланд
         </h1>
+        <img class="imagge" src="https://berupolis.ru/storage/blog-posts/January2022/sZH9jqhbiaLQTsRN1QcB.jpg" />
         <p class="OpisStran">
             Таиланд – это не только красивые пляжи и теплое море, но и уникальная природа. Здесь можно наблюдать редких животных и птиц, а также наслаждаться прекрасными видами лесов и гор.
         </p>
     </div>
 
     <div class="Egipt">
-        <img class="imagge" src="" />
         <h1 class="ZagolovokStran">
             Египет
         </h1>
+        <img class="imagge" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyotZQSR02kcuc7MPtP2NoN7DChLISmJbkYGPLpUT9dw&s" />
         <p class="OpisStran">
             Достоинства Египта известны каждому: качественный пляжный отдых круглый год на Средиземном и Красном морях, разбавленный отличным дайвингом, плюс разнообразная «экскурсионка»: пирамиды, Сфинкс и Луксор.
         </p>
@@ -78,7 +78,9 @@
         margin-left: 15px;
         margin-right: 15px;
         margin-bottom: 20px;
-        justify-content:space-between;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap; 
     }
 
     .imagge{
@@ -91,7 +93,7 @@
 
     .ZagolovokStran{
         text-align: center;
-        font-family: Montserrat Medium;
+        font-family: Montserrat Black;
         color: white;
     }
 
@@ -106,6 +108,24 @@
         width: 320px;
         height: 380px;
         background-image: url('https://i.ibb.co/kmKrNfb/turk.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 14px;
+    }
+
+    .Tailand {
+        width: 320px;
+        height: 380px;
+        background-image: url('https://i.ibb.co/RBBBP7S/2024-04-25-202135.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 14px;
+    }
+
+    .Egipt {
+        width: 320px;
+        height: 380px;
+        background-image: url('https://i.ibb.co/B3Vrqpc/2024-04-25-202842.png'); 
         background-size: cover;
         background-repeat: no-repeat;
         border-radius: 14px;
