@@ -122,6 +122,13 @@ body {
     font-family: Montserrat Medium;
     text-align: center;
     border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 40px;
+    margin: 0 auto; 
+    margin-top: 20px; 
 }
 
     .btnedit:hover {
