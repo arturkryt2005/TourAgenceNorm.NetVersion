@@ -57,37 +57,50 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
 .profile-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: black;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-}
-
-.Name{
-    font-family: Montserrat Black;
-    color: white;
-}
-
-.SurName {
-    font-family: Montserrat Black;
-    color: white;
+    max-width: 600px; /* Максимальная ширина контейнера */
+    margin: 0 auto; /* Центрирование по горизонтали */
+    padding: 20px; /* Отступы вокруг контейнера */
+    background-color: #f9f9f9; /* Цвет фона */
+    border-radius: 10px; /* Скругление углов */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень */
+    /* Новые стили для центрирования по вертикали */
+    position: absolute; /* Абсолютное позиционирование */
+    top: 50%; /* Размещение блока в верхней половине экрана */
+    left: 50%; /* Размещение блока в левой половине экрана */
+    transform: translate(-50%, -50%); /* Перемещение блока на половину его ширины и высоты назад */
 }
 
 .nameee {
-    font-family: Montserrat Light;
-    color: white;
+    font-size: 18px; /* Размер текста для заголовков */
+    margin-bottom: 5px; /* Отступ снизу */
 }
 
-
-.buttons{
-
+.Name, .SurName {
+    font-size: 24px; /* Размер текста для имени и фамилии */
+    font-weight: bold; /* Жирный шрифт */
+    color: #333; /* Цвет текста */
 }
+
+.buttons {
+    margin-top: 20px; /* Отступ сверху для кнопок */
+}
+
+.editbut {
+    padding: 10px 20px; /* Отступы внутри кнопки */
+    font-size: 16px; /* Размер текста кнопки */
+    background-color: palegreen; /* Цвет фона кнопки */
+    color: black; /* Цвет текста кнопки */
+    border: none; /* Убираем границу */
+    border-radius: 5px; /* Скругление углов */
+    cursor: pointer; /* Изменяем курсор при наведении */
+    transition: background-color 0.3s ease; /* Плавное изменение цвета фона */
+}
+
+    .editbut:hover {
+        background-color: #0056b3; /* Измененный цвет фона при наведении */
+    }
+
 
 .profile-edit-form {
     background-color: black;
@@ -205,29 +218,6 @@ body {
         color: #bd2130;
     }
 
-.editbut {
-    text-align: center;
-    width: 40%;
-    background-color: white;
-    color: black;
-    font-family: Montserrat Light;
-    border-radius: 4px;
-    display: block;
-    margin-bottom: 10px; 
-    border: 1px solid #ccc; 
-    padding: 10px; 
-}
-
-.buttons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-    .buttons .editdiv {
-        width: 100%;
-        margin-bottom: 10px; 
-    }
 
 .HeaderMain {
     background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxkhe_HvL3UWbcZiCxKJn8asdma0AkJ2JChxZHFtKDZg&s');
