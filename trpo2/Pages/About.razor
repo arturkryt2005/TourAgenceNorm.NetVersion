@@ -34,8 +34,6 @@
 </div>
 
 @code {
-
-
     private List<string> ImageUrls = new List<string>
     {
         "https://7d9e88a8-f178-4098-bea5-48d960920605.selcdn.net/4ca0b6d5-160b-47f2-b0d7-400ad19e9878/",
@@ -56,7 +54,6 @@
         currentIndex = (currentIndex - 1 + ImageUrls.Count) % ImageUrls.Count;
         StateHasChanged();
     }
-
 }
 
 <style>

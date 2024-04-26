@@ -5,16 +5,6 @@ namespace trpo2.Data
 {
     public class UserService
     {
-        private Customer currentUser;
-
-        public void SetCurrentUser(Customer user)
-        {
-            currentUser = user;
-        }
-
-        public Customer GetCurrentUser()
-        {
-            return currentUser;
-        }
+        public Customer CurrentUser { get; set; } = null!;
     }
 }

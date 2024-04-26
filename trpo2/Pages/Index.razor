@@ -1,13 +1,8 @@
 ﻿@page "/"
 @inject Microsoft.JSInterop.IJSRuntime JSRuntime
-@using trpo2.Models
 @inject TourAgencyContext dbContext
-@using Microsoft.EntityFrameworkCore;
-@using trpo2.Data;
-@inject UserService userService;
 
-
-<PageTitle>Index</PageTitle>
+<PageTitle>Главная страница</PageTitle>
 
 <div class="login-form">
         <h1 class="Vhonh">Вход</h1>
@@ -29,7 +24,10 @@
 </div>
 @code {
     [Inject]
-    private NavigationManager NavigationManager { get; set; }
+    private NavigationManager NavigationManager { get; set; } = null!;
+
+    [Inject]
+    private UserService UserService { get; set; } = null!;
 
     private void RedirectToRegistrationPage()
     {
@@ -48,11 +46,11 @@
             return;
         }
         else{
-        var user = await dbContext.Customers.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
-        if (user != null)
-        {
-            userService.SetCurrentUser(user);
-            NavigationManager.NavigateTo("/Profile");
+            var user = await dbContext.Customers.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
+            if (user != null)
+            {
+                UserService.CurrentUser = user;
+                NavigationManager.NavigateTo("/Profile");
         }
         else
         {

@@ -1,4 +1,5 @@
 ﻿@page "/EditPage"
+@using trpo2.Data
 @using trpo2.Models
 @inject TourAgencyContext dbContext
 @inject Microsoft.JSInterop.IJSRuntime JSRuntime
@@ -31,13 +32,17 @@
 
 @code {
     [Inject]
-    private NavigationManager NavigationManager { get; set; }
+    private NavigationManager NavigationManager { get; set; } = null!;    
 
-    private Customer CurrentUser;
+    [Inject]
+    private UserService UserService { get; set; } = null!;
+
+    private Customer CurrentUser { get; set; } = null!;
 
     protected override void OnInitialized()
     {
-        CurrentUser = dbContext.Customers.FirstOrDefault(); 
+        CurrentUser = UserService.CurrentUser;
+        StateHasChanged();
     }
 
     private async Task SaveChanges()
@@ -48,15 +53,13 @@
             return;
         }
 
-        var existingUser = dbContext.Customers.FirstOrDefault(c => c.Email == CurrentUser.Email && c.FirstName != CurrentUser.Email);
-        if (existingUser != null)
-        {
-            await JSRuntime.InvokeVoidAsync("alert", "Пользователь с этой почтой уже существует!");
-            return;
-        }
-
+        var existingUser = dbContext.Customers.FirstOrDefault(c => c.CustomerId == CurrentUser.CustomerId);
+        
         dbContext.Customers.Update(CurrentUser);
         await dbContext.SaveChangesAsync();
+
+        CurrentUser = dbContext.Customers.FirstOrDefault(c => c.CustomerId == existingUser.CustomerId);
+        StateHasChanged();
 
         NavigationManager.NavigateTo("/Profile");
     }

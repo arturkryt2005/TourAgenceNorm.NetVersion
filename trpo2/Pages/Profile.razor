@@ -1,9 +1,6 @@
 ﻿@page "/Profile"
-@using trpo2.Models
 @inject TourAgencyContext dbContext
 @inject Microsoft.JSInterop.IJSRuntime JSRuntime
-@using Microsoft.EntityFrameworkCore;
-@using trpo2.Data;
 @inject UserService userService;
 
 <Header />
@@ -11,20 +8,26 @@
 <div class="profile-container">
     @if (CurrentUser != null)
     {
-            <p class="nameee">Имя:</p><br />
-            <h1 class="Name">@CurrentUser.FirstName</h1>
+        <p class="nameee">Имя:</p>
 
-            <p class="nameee">Фамилия: </p><br />
-            <h1 class="SurName">@CurrentUser.LastName</h1>
+        <br />
+        <h1 class="Name">@CurrentUser.FirstName</h1>
 
-            <p class="nameee">Почта:</p><br />
-            <h1 class="SurName">@CurrentUser.Email</h1>
+        <p class="nameee">Фамилия: </p>
 
-            <p class="nameee">Номер телефона:</p> <br />
-            <h1 class="SurName">@CurrentUser.Phone</h1>
+        <br />
+        <h1 class="SurName">@CurrentUser.LastName</h1>
 
-        <div class="buttons"> 
-            <div class="editdiv"> 
+        <p class="nameee">Почта:</p>
+
+        <br />
+        <h1 class="SurName">@CurrentUser.Email</h1>
+
+        <p class="nameee">Номер телефона:</p> <br />
+        <h1 class="SurName">@CurrentUser.Phone</h1>
+
+        <div class="buttons">
+            <div class="editdiv">
                 <button @onclick="EditProfile" class="editbut">Редактировать профиль</button>
             </div>
 
@@ -42,13 +45,13 @@
 @code {
     [Inject]
 
-    NavigationManager NavigationManager { get; set; }
+    private NavigationManager NavigationManager { get; set; } = null!;
 
-    private Customer CurrentUser;
+    private Customer CurrentUser { get; set; } = null!;
 
     protected override void OnInitialized()
     {
-        CurrentUser = userService.GetCurrentUser();
+        CurrentUser = userService.CurrentUser;
     }
 
     private void EditProfile()
