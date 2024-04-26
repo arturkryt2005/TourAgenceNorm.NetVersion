@@ -2,6 +2,8 @@
 @inject TourAgencyContext dbContext
 @inject Microsoft.JSInterop.IJSRuntime JSRuntime
 @inject UserService userService;
+@using trpo2.Data
+@inject CustomEmailService emailservice;
 
 <Header />
 
@@ -10,7 +12,7 @@
 
     <div class="form-group">
         <label for="country">Страна:</label>
-        <select class="form-control" id="country" @onchange="ChangeCountry">
+        <select class="form-control" id="country" @onchange="(e) => ChangeCountry(e)">
             @foreach (var country in Countries)
             {
                 <option value="@country.CountryId">@country.Name</option>
@@ -20,7 +22,7 @@
 
     <div class="form-group">
         <label for="city">Город:</label>
-        <select class="form-control" id="city" @onchange="ChangeCity">
+        <select class="form-control" id="city" @onchange="(e) => ChangeCity(e)">
             @foreach (var city in Cities)
             {
                 <option value="@city.CityId">@city.Name</option>
@@ -37,6 +39,7 @@
             }
         </select>
     </div>
+    <button class="ButtonYes" @onclick="AcceptBooking">Подтвердить выбор</button>
 </div>
 
 @code {
@@ -48,9 +51,29 @@
     private int selectedCity;
     private int selectedHotel;
 
+    [Parameter]
+    public string ApplicationTicketId { get; set; }
+
+    private ApplicationTicket applicationTicket;
+
     protected override void OnInitialized()
     {
+        applicationTicket = new ApplicationTicket();
         LoadCountries();
+    }
+
+    private async Task AcceptBooking()
+    {
+        await Task.FromResult(0); 
+        var result = emailservice.SendMessage(applicationTicket, selectedCountry.ToString(), selectedCity.ToString(), selectedHotel.ToString());
+        Message = result.ErrorMessage;
+
+        if (result.Success)
+        {
+            applicationTicket.State = ApplicationTicketState.Accepted;
+        }
+
+        StateHasChanged();
     }
 
     private void LoadCountries()
@@ -70,8 +93,6 @@
         LoadCities();
     }
 
-
-
     private void LoadCities()
     {
         Cities = dbContext.Cities.Where(c => c.CountryId == selectedCountry).ToList();
@@ -79,18 +100,17 @@
         LoadHotels();
     }
 
-
     private void ChangeCity(ChangeEventArgs e)
     {
         selectedCity = Convert.ToInt32(e.Value);
         LoadHotels();
     }
 
-
-
     private void LoadHotels()
     {
         Hotels = dbContext.Hotels.Where(h => h.CityId == selectedCity).ToList();
         StateHasChanged();
     }
+
+    private string Message { get; set; } = "";
 }

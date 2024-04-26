@@ -8,6 +8,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Configuration.AddJsonFile("appsettings.json");
 builder.Configuration.AddEnvironmentVariables();
+builder.Services.AddSingleton<CustomEmailService>();
 
 builder.Services.AddDbContext<TourAgencyContext>(options =>
 {
