@@ -1,0 +1,63 @@
+﻿@page "/EditPage"
+@using trpo2.Models
+@inject TourAgencyContext dbContext
+@inject Microsoft.JSInterop.IJSRuntime JSRuntime
+
+<div class="profile-edit-form">
+    <h1 class="Izmen">Изменение данных</h1>
+
+    <div class="form-group">
+        <label for="firstName" class="editnameandmore">Имя:</label>
+        <input type="text" maxlength="15" id="firstName" class="form-control" @bind="CurrentUser.FirstName" required />
+    </div>
+
+    <div class="form-group">
+        <label for="lastName" class="editnameandmore">Фамилия:</label>
+        <input type="text" maxlength="20" id="lastName" class="form-control" @bind="CurrentUser.LastName" required />
+    </div>
+
+    <div class="form-group">
+        <label for="email" class="editnameandmore">Почта:</label>
+        <input type="email" maxlength="30" id="email" class="form-control" @bind="CurrentUser.Email" required />
+    </div>
+
+    <div class="form-group">
+        <label for="phoneNumber" class="editnameandmore">Номер телефона:</label>
+        <input type="tel" maxlength="11" id="phoneNumber" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 12)" @bind="CurrentUser.Phone" required />
+    </div>
+
+    <button class="btnedit" @onclick="SaveChanges">Сохранить изменения</button>
+</div>
+
+@code {
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    private Customer CurrentUser;
+
+    protected override void OnInitialized()
+    {
+        CurrentUser = dbContext.Customers.FirstOrDefault(); 
+    }
+
+    private async Task SaveChanges()
+    {
+        if (!CurrentUser.Email.Contains("@"))
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "Некорректный адрес электронной почты.");
+            return;
+        }
+
+        var existingUser = dbContext.Customers.FirstOrDefault(c => c.Email == CurrentUser.Email && c.FirstName != CurrentUser.Email);
+        if (existingUser != null)
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "Пользователь с этой почтой уже существует!");
+            return;
+        }
+
+        dbContext.Customers.Update(CurrentUser);
+        await dbContext.SaveChangesAsync();
+
+        NavigationManager.NavigateTo("/Profile");
+    }
+}

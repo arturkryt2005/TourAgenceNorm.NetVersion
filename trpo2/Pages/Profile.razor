@@ -11,11 +11,26 @@
 <div class="profile-container">
     @if (CurrentUser != null)
     {
-        <div class="profile-info">
-            <p class="info-item"><strong>Имя:</strong> @CurrentUser.FirstName</p>
-            <p class="info-item"><strong>Фамилия:</strong> @CurrentUser.LastName</p>
-            <p class="info-item"><strong>Почта:</strong> @CurrentUser.Email</p>
-            <p class="info-item"><strong>Номер телефона:</strong> @CurrentUser.Phone</p>
+            <p class="nameee">Имя:</p><br />
+            <h1 class="Name">@CurrentUser.FirstName</h1>
+
+            <p class="nameee">Фамилия: </p><br />
+            <h1 class="SurName">@CurrentUser.LastName</h1>
+
+            <p class="nameee">Почта:</p><br />
+            <h1 class="SurName">@CurrentUser.Email</h1>
+
+            <p class="nameee">Номер телефона:</p> <br />
+            <h1 class="SurName">@CurrentUser.Phone</h1>
+
+        <div class="buttons"> 
+            <div class="editdiv"> 
+                <button @onclick="EditProfile" class="editbut">Редактировать профиль</button>
+            </div>
+
+            <div class="editdiv">
+                <button @onclick="Cancel" class="editbut">Выйти из аккаунта</button>
+            </div>
         </div>
     }
     else
@@ -25,10 +40,24 @@
 </div>
 
 @code {
+    [Inject]
+
+    NavigationManager NavigationManager { get; set; }
+
     private Customer CurrentUser;
 
     protected override void OnInitialized()
     {
         CurrentUser = userService.GetCurrentUser();
+    }
+
+    private void EditProfile()
+    {
+        NavigationManager.NavigateTo("/EditPage");
+    }
+
+    private void Cancel()
+    {
+        NavigationManager.NavigateTo("/");
     }
 }

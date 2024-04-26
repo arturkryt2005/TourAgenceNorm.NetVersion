@@ -21,6 +21,12 @@ h1:focus {
     margin-top: 100px;
 }
 
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
 body {
     background-image: url('https://i.ibb.co/7z6xpfx/bg.png');
     background-repeat: no-repeat;
@@ -58,12 +64,68 @@ body {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    background-color: #f9f9f9;
+    background-color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.Name{
+    font-family: Montserrat Black;
+    color: white;
+}
+
+.SurName {
+    font-family: Montserrat Black;
+    color: white;
+}
+
+.nameee {
+    font-family: Montserrat Light;
+    color: white;
+}
+
+
+.buttons{
+
+}
+
+.profile-edit-form {
+    background-color: black;
+    width: 45%;
+    border-radius: 15px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.editnameandmore{
+    color: white;
+    font-family: Montserrat Medium;
+}
+
+.btnedit {
+    background-color: white;
+    color: black;
+    font-family: Montserrat Medium;
+    text-align: center;
+    border-radius: 4px;
+}
+
+    .btnedit:hover {
+        background-color: black;
+        color: white;
+    }
+
+    .Izmen {
+        color: white;
+        font-family: Montserrat Black;
+        text-align: center;
+    }
+
+
 .profile-info {
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
     .profile-info .info-item {
@@ -92,6 +154,8 @@ body {
         padding: 8px;
         border-radius: 5px;
     }
+
+
 
 .profile-info .info-item:nth-child(odd) {
     background-color: #f0f0f0;
@@ -141,11 +205,29 @@ body {
         color: #bd2130;
     }
 
+.editbut {
+    text-align: center;
+    width: 40%;
+    background-color: white;
+    color: black;
+    font-family: Montserrat Light;
+    border-radius: 4px;
+    display: block;
+    margin-bottom: 10px; 
+    border: 1px solid #ccc; 
+    padding: 10px; 
+}
+
 .buttons {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
+
+    .buttons .editdiv {
+        width: 100%;
+        margin-bottom: 10px; 
+    }
 
 .HeaderMain {
     background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxkhe_HvL3UWbcZiCxKJn8asdma0AkJ2JChxZHFtKDZg&s');
