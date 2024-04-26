@@ -58,47 +58,46 @@ body {
     border-radius: 4px;
 }
 .profile-container {
-    max-width: 600px; /* Максимальная ширина контейнера */
-    margin: 0 auto; /* Центрирование по горизонтали */
-    padding: 20px; /* Отступы вокруг контейнера */
-    background-color: #f9f9f9; /* Цвет фона */
-    border-radius: 10px; /* Скругление углов */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень */
-    /* Новые стили для центрирования по вертикали */
-    position: absolute; /* Абсолютное позиционирование */
-    top: 50%; /* Размещение блока в верхней половине экрана */
-    left: 50%; /* Размещение блока в левой половине экрана */
-    transform: translate(-50%, -50%); /* Перемещение блока на половину его ширины и высоты назад */
+    max-width: 600px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    background-color: #f9f9f9; 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
 }
 
 .nameee {
-    font-size: 18px; /* Размер текста для заголовков */
-    margin-bottom: 5px; /* Отступ снизу */
+    font-size: 18px; 
+    margin-bottom: 5px; 
 }
 
 .Name, .SurName {
-    font-size: 24px; /* Размер текста для имени и фамилии */
-    font-weight: bold; /* Жирный шрифт */
-    color: #333; /* Цвет текста */
+    font-size: 24px; 
+    font-weight: bold; 
+    color: #333; 
 }
 
 .buttons {
-    margin-top: 20px; /* Отступ сверху для кнопок */
+    margin-top: 20px; 
 }
 
 .editbut {
-    padding: 10px 20px; /* Отступы внутри кнопки */
-    font-size: 16px; /* Размер текста кнопки */
-    background-color: palegreen; /* Цвет фона кнопки */
-    color: black; /* Цвет текста кнопки */
-    border: none; /* Убираем границу */
-    border-radius: 5px; /* Скругление углов */
-    cursor: pointer; /* Изменяем курсор при наведении */
-    transition: background-color 0.3s ease; /* Плавное изменение цвета фона */
+    padding: 10px 20px; 
+    font-size: 16px; 
+    background-color: palegreen; 
+    color: black; 
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
 }
 
     .editbut:hover {
-        background-color: #0056b3; /* Измененный цвет фона при наведении */
+        background-color: #0056b3; 
     }
 
 
