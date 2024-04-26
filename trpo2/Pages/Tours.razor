@@ -1,7 +1,96 @@
 ﻿@page "/Tours"
+@inject TourAgencyContext dbContext
+@inject Microsoft.JSInterop.IJSRuntime JSRuntime
+@inject UserService userService;
 
 <Header />
 
-@code {
+<div class="container">
+    <h1>Выберите тур</h1>
 
+    <div class="form-group">
+        <label for="country">Страна:</label>
+        <select class="form-control" id="country" @onchange="ChangeCountry">
+            @foreach (var country in Countries)
+            {
+                <option value="@country.CountryId">@country.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="city">Город:</label>
+        <select class="form-control" id="city" @onchange="ChangeCity">
+            @foreach (var city in Cities)
+            {
+                <option value="@city.CityId">@city.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="hotel">Отель:</label>
+        <select class="form-control" id="hotel" @bind="selectedHotel">
+            @foreach (var hotel in Hotels)
+            {
+                <option value="@hotel.HotelId">@hotel.Name</option>
+            }
+        </select>
+    </div>
+</div>
+
+@code {
+    private List<Country> Countries = null!;
+    private List<City> Cities = null!;
+    private List<Hotel> Hotels = null!;
+
+    private int selectedCountry;
+    private int selectedCity;
+    private int selectedHotel;
+
+    protected override void OnInitialized()
+    {
+        LoadCountries();
+    }
+
+    private void LoadCountries()
+    {
+        Countries = dbContext.Countries.ToList();
+        if (Countries.Any())
+        {
+            selectedCountry = Countries.First().CountryId;
+            StateHasChanged();
+            LoadCities();
+        }
+    }
+
+    private void ChangeCountry(ChangeEventArgs e)
+    {
+        selectedCountry = Convert.ToInt32(e.Value);
+        LoadCities();
+    }
+
+
+
+    private void LoadCities()
+    {
+        Cities = dbContext.Cities.Where(c => c.CountryId == selectedCountry).ToList();
+        StateHasChanged();
+        LoadHotels();
+    }
+
+
+    private void ChangeCity(ChangeEventArgs e)
+    {
+        selectedCity = Convert.ToInt32(e.Value);
+        LoadHotels();
+    }
+
+
+
+    private void LoadHotels()
+    {
+        Hotels = dbContext.Hotels.Where(h => h.CityId == selectedCity).ToList();
+        StateHasChanged();
+    }
 }
