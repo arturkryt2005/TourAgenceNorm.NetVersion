@@ -48,6 +48,10 @@
 </div>
 
 @code {
+    [Inject]
+
+    private NavigationManager NavigationManager { get; set; } = null!;
+
     private List<Country> Countries = null!;
     private List<City> Cities = null!;
     private List<Hotel> Hotels = null!;
@@ -71,6 +75,8 @@
         Message = result.ErrorMessage;
 
         StateHasChanged();
+        NavigationManager.NavigateTo("/SuccessPage");
+
     }
 
     protected override void OnInitialized()

@@ -21,8 +21,8 @@ namespace trpo2.Data
 
         public CustomErrorMessage SendMessage(string selectedCountry, string selectedCity, string selectedHotel)
         {
-            const string urlBackground = "https://yourbackgroundimageurl.jpg";
-            const string urlLogo = "https://yourlogourl.png";
+            const string urlBackground = "https://photogora.ru/img/product/thumb/4947/5d2ef838a9cc69778828569119077791.jpg";
+            const string urlLogo = "https://326605.selcdn.ru/03005/iblock/340/logotip-KAI.jpg";
 
             try
             {
@@ -50,15 +50,15 @@ namespace trpo2.Data
                                     <div style=""display: flex; flex-direction: column; margin-bottom: 20px;"">
                                         <div style=""display: flex; align-items: center; margin-bottom: 10px;"">
                                             <span style=""font-weight: bold; margin-right: 10px; color: #333;"">Страна:</span>
-                                            <span style=""margin: 0; color: #666;"">{selectedCountry}</span>
+                                            <span style=""margin: 0; color: #666;"">{selectedCountry}<br /></span>
                                         </div>
                                         <div style=""display: flex; align-items: center; margin-bottom: 10px;"">
                                             <span style=""font-weight: bold; margin-right: 10px; color: #333;"">Город:</span>
-                                            <span style=""margin: 0; color: #666;"">{selectedCity}</span>
+                                            <span style=""margin: 0; color: #666;"">{selectedCity}<br /></span>
                                         </div>
                                         <div style=""display: flex; align-items: center; margin-bottom: 10px;"">
                                             <span style=""font-weight: bold; margin-right: 10px; color: #333;"">Отель:</span>
-                                            <span style=""margin: 0; color: #666;"">{selectedHotel}</span>
+                                            <span style=""margin: 0; color: #666;"">{selectedHotel}<br /></span>
                                         </div>
                                     </div>
                                 </div>
