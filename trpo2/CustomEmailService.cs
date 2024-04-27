@@ -12,6 +12,13 @@ namespace trpo2.Data
 
     public class CustomEmailService : IEmailService
     {
+        private readonly UserService _userService;
+
+        public CustomEmailService(UserService userService)
+        {
+            _userService = userService;
+        }
+
         public CustomErrorMessage SendMessage(string selectedCountry, string selectedCity, string selectedHotel)
         {
             const string urlBackground = "https://yourbackgroundimageurl.jpg";
@@ -24,6 +31,7 @@ namespace trpo2.Data
                     From = new MailAddress("studencheskiy.sovet.kit@mail.ru")
                 };
 
+                mail.To.Add(_userService.CurrentUser.Email);
                 mail.Subject = "Подтверждение бронирования тура";
                 mail.Body =
                     $@"<!DOCTYPE html>

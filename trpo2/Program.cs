@@ -17,6 +17,7 @@ builder.Services.AddDbContext<TourAgencyContext>(options =>
 builder.Configuration.AddJsonFile("appsettings.json", optional: false);
 
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<IEmailService, CustomEmailService>();
 
 var app = builder.Build();
 
