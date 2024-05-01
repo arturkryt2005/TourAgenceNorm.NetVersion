@@ -3,6 +3,8 @@
 @using trpo2.Models
 @inject TourAgencyContext dbContext
 @inject Microsoft.JSInterop.IJSRuntime JSRuntime
+@using Microsoft.JSInterop
+
 
 <div class="profile-edit-form">
     <h1 class="Izmen">Изменение данных</h1>
@@ -31,11 +33,11 @@
 </div>
 
 @code {
-    [Inject]
-    private NavigationManager NavigationManager { get; set; } = null!;    
+        [Inject]
+        private NavigationManager NavigationManager { get; set; } = null!;    
 
-    [Inject]
-    private UserService UserService { get; set; } = null!;
+        [Inject]
+        private UserService UserService { get; set; } = null!;
 
     private Customer CurrentUser { get; set; } = null!;
 
@@ -50,6 +52,14 @@
         if (!CurrentUser.Email.Contains("@"))
         {
             await JSRuntime.InvokeVoidAsync("alert", "Некорректный адрес электронной почты.");
+            return;
+        }
+        if (string.IsNullOrEmpty(CurrentUser.FirstName) ||
+           string.IsNullOrEmpty(CurrentUser.LastName) ||
+           string.IsNullOrEmpty(CurrentUser.Email) ||
+           string.IsNullOrEmpty(CurrentUser.Phone))
+        {
+            await JSRuntime.InvokeVoidAsync("alert", "Пожалуйста, заполните все обязательные поля.");
             return;
         }
 
